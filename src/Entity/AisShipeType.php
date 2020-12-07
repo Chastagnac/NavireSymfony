@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AisShipeTypeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass=AisShipeTypeRepository::class)
  */

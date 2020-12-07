@@ -3,11 +3,10 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use \Symfony\Component\Form\AbstractType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AisShipTypeType extends AbstractType
+class AisShipTypeController extends AbstractController
 {
     /**
      * @Route("/voirtous", name="voirTous")
