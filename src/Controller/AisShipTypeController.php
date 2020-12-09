@@ -6,18 +6,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AisShipTypeController extends AbstractController
-{
+/**
+ * @Route("/aisshiptype", name="aisshiptype_")
+ */
+class AisShipTypeController extends AbstractController {
+
     /**
      * @Route("/aisshiptype", name="aisshiptype_")
      */
-    public function index(): Response
-    {
+    public function index(): Response {
         return $this->render('ais_ship_type/index.html.twig', [
-            'controller_name' => 'AisShipTypeController',
+                    'controller_name' => 'AisShipTypeController',
         ]);
     }
-    
+
     public function voirTous(): Response {
         $type = [
             1 => 'Reserved',
@@ -30,8 +32,9 @@ class AisShipTypeController extends AbstractController
             8 => 'Tanker',
             9 => 'Other',
         ];
-        return $this->render('aisshiptype/voirtous.html.twig',[
+        return $this->render('aisshiptype/voirtous.html.twig', [
                     'types' => $types,
         ]);
     }
+
 }

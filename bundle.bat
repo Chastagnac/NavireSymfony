@@ -8,4 +8,5 @@ call Composer require symfony/validator
 call Composer require symfony/orm-pack
 call composer require symfony/security-bundle
 call composer require symfony/apache-pack
+call composer require symfony/swiftmailer-bundle
 
