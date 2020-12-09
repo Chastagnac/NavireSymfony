@@ -16,7 +16,7 @@ class GestionContact {
     private MessageRepository $repo;
     
     
-    function __construct(\Swift_Mailer $mail, Environment $environnementTwig, ManagerRegistry $doctrine, MessageRespository $repo){
+    function __construct(Swift_Mailer $mail, Environment $environnementTwig, ManagerRegistry $doctrine, MessageRespository $repo){
         $this->mail = $mail;
         $this->environnementTwig = $environnementTwig;
         $this->doctrine = $doctrine;

@@ -15,7 +15,7 @@ class AisShipTypeController extends AbstractController {
      * @Route("/aisshiptype", name="aisshiptype_")
      */
     public function index(): Response {
-        return $this->render('ais_ship_type/index.html.twig', [
+        return $this->render('aisshiptype/index.html.twig', [
                     'controller_name' => 'AisShipTypeController',
         ]);
     }
