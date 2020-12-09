@@ -7,6 +7,12 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {%  for message in app.flashes('notification') %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% block navbar %}{% endblock %}
+        {% block footer %}{% endblock %}
     </body>
 </html>
