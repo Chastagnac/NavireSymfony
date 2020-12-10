@@ -30,7 +30,7 @@ class MessageController extends AbstractController {
             $gestionContact->envoiMailContact($message);
             
             $this->addFlash('notification', "Votre message à bien été envoyé !");
-            return $this->redirectToRoute("home");
+            return $this->redirectToRoute("messagee_contact");
         }
         return $this->render('message/contact.html.twig', [
             'form' => $form->createView(),
