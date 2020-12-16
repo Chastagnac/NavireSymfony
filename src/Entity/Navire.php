@@ -8,6 +8,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=NavireRepository::class)
+ * @ORM\Table( name="navire" , 
+ *              uniqueConstraints=(@ORM\UniqueConstraint(name="mmsi_unique",columns={"mmsi"})}
+ * )
  */
 class Navire
 {
@@ -19,10 +22,10 @@ class Navire
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=7)
+     * @ORM\Column(type="string", length=7,unique=true)
      * @Assert\Regex(
-     *      pattern="/[1-9]{7}/",
-     *      message="Le numéro IMO doit domporter 7 chiffres"
+     * pattern="/[1-9][0-9]{6}/",
+     * message="Le numéro IMO doit comporter 7 chiffres"
      * )
      */
     private $imo;
@@ -30,14 +33,16 @@ class Navire
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\Length(
-     *                  min=3,
-     *                  max=100
-     *               )
+     *min=3,
+     * max=100)
      */
-    private $navire;
+    private $nom;
 
     /**
      * @ORM\Column(type="string", length=9)
+     * @Assert\Regex(
+     * pattern="/[1-9][0-9]{8}/",
+     * message="Le numéro IMO doit comporter 9 chiffres")
      */
     private $mmsi;
 
@@ -47,9 +52,22 @@ class Navire
     private $indicatifAppel;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime",nullable=true)
+     *
      */
     private $eta;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Pays::class)
+     * @ORM\JoinColumn(name="idpays",nullable=false)
+     */
+    private $lePavillon;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=aisshiptype::class)
+     * @ORM\JoinColumn(name="idaisshiptype",nullable=false)
+     */
+    private $idAisshiptype;
 
     public function getId(): ?int
     {
@@ -68,14 +86,14 @@ class Navire
         return $this;
     }
 
-    public function getNavire(): ?string
+    public function getNom(): ?string
     {
-        return $this->navire;
+        return $this->nom;
     }
 
-    public function setNavire(string $navire): self
+    public function setNom(string $nom): self
     {
-        $this->navire = $navire;
+        $this->nom = $nom;
 
         return $this;
     }
@@ -92,12 +110,12 @@ class Navire
         return $this;
     }
 
-    public function getIndicatifAppel(): ?\DateTimeInterface
+    public function getIndicatifAppel(): ?string
     {
         return $this->indicatifAppel;
     }
 
-    public function setIndicatifAppel(?\DateTimeInterface $indicatifAppel): self
+    public function setIndicatifAppel(string $indicatifAppel): self
     {
         $this->indicatifAppel = $indicatifAppel;
 
@@ -109,10 +127,34 @@ class Navire
         return $this->eta;
     }
 
-    public function setEta(?\DateTimeInterface $eta): self
+    public function setEta(\DateTimeInterface $eta): self
     {
         $this->eta = $eta;
-        
+
+        return $this;
+    }
+
+    public function getLePavillon(): ?Pays
+    {
+        return $this->lePavillon;
+    }
+
+    public function setLePavillon(?Pays $lePavillon): self
+    {
+        $this->lePavillon = $lePavillon;
+
+        return $this;
+    }
+
+    public function getIdAisshiptype(): ?aisshiptype
+    {
+        return $this->idAisshiptype;
+    }
+
+    public function setIdAisshiptype(?aisshiptype $idAisshiptype): self
+    {
+        $this->idAisshiptype = $idAisshiptype;
+
         return $this;
     }
 }
