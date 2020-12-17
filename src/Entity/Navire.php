@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=NavireRepository::class)
  * @ORM\Table( name="navire" , 
- *              uniqueConstraints=(@ORM\UniqueConstraint(name="mmsi_unique",columns={"mmsi"})}
+ *              uniqueConstraints={@ORM\UniqueConstraint(name="mmsi_unique",columns={"mmsi"})}
  * )
  */
 class Navire
